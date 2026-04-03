@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--theme-bg);
+  --color-surface: var(--theme-surface);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border-dark: var(--theme-border-dark);
+  --color-text-primary: var(--theme-text-primary);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-text-muted: var(--theme-text-muted);
+
+  /* Primary brand colors - Vibrant Purple to Pink gradient */
+  --color-brand-primary: #9350ff;
+  --color-brand-secondary: #ec4899;
+  --color-brand-accent: #3b82f6;
+
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    /* Default to dark mode colors */
+    --theme-bg: #101010;
+    --theme-surface: #0a0a0a;
+    --theme-surface-hover: #141414;
+    --theme-border-dark: #222222;
+    --theme-text-primary: #ffffff;
+    --theme-text-secondary: #e0e0e0;
+    --theme-text-muted: #888888;
+  }
+
+  .light {
+    /* Light mode colors */
+    --theme-bg: #f8fafc;
+    --theme-surface: #ffffff;
+    --theme-surface-hover: #f1f5f9;
+    --theme-border-dark: #e8eaed;
+    --theme-text-primary: #0f172a;
+    --theme-text-secondary: #334155;
+    --theme-text-muted: #64748b;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}

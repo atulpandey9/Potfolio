@@ -1,75 +1,101 @@
 import { motion } from 'framer-motion';
+import { Server, Database, Boxes, Sparkles } from 'lucide-react';
+
+const HIGHLIGHTS = [
+  {
+    icon: Server,
+    title: 'Backend Architecture',
+    desc: 'Scalable RESTful APIs, auth systems & robust business logic'
+  },
+  {
+    icon: Database,
+    title: 'Data & Caching',
+    desc: 'Data modeling with MongoDB & ultra-fast caching with Redis'
+  },
+  {
+    icon: Boxes,
+    title: 'DevOps & Containers',
+    desc: 'Containerized development & performance optimization with Docker'
+  },
+  {
+    icon: Sparkles,
+    title: 'AI & LLM Integration',
+    desc: 'Practical AI solutions with LLM APIs, LangChain & RAG pipelines'
+  }
+];
 
 export default function About() {
   return (
-    <section className="py-20 border-t border-white/5" id="about">
+    <section className="py-12 sm:py-16 md:py-20 border-t border-white/5" id="about">
+      {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="mb-12"
+        className="mb-8 sm:mb-12"
       >
-        <h2 className="text-3xl font-bold text-text-primary mb-2">About Me</h2>
-        <div className="w-20 h-0.5 bg-brand-primary rounded-full"></div>
+        <span className="text-sm text-brand-primary mb-1 font-medium tracking-wide uppercase">
+          Background
+        </span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-2 tracking-tight">
+          About Me
+        </h2>
+        <div className="w-16 sm:w-20 h-0.5 bg-brand-primary rounded-full"></div>
       </motion.div>
 
-      <div className="flex flex-col md:flex-row gap-12 items-center">
-        {/* Left Picture Card */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex-1 w-full max-w-sm"
-        >
-          <div className="relative group">
-            {/* Glow Effect Background */}
-            <div className="absolute -inset-1 bg-brand-primary rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+      {/* Main Narrative (Full width, no photo frame) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="max-w-4xl space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-text-secondary leading-relaxed"
+      >
+        <p>
+          Hey! I'm <strong className="text-text-primary font-semibold">Atul Pandey</strong>, a Backend Developer passionate about building scalable, efficient, and reliable web applications.
+        </p>
+        <p>
+          I specialize in backend development using <strong className="text-text-primary font-semibold">Node.js, Express.js, TypeScript, and MongoDB</strong>, with a focus on designing RESTful APIs, implementing authentication systems, and managing application data. I also work with <strong className="text-text-primary font-semibold">Redis and Docker</strong> to explore caching, performance optimization, and containerized application development.
+        </p>
+        <p>
+          Beyond traditional backend development, I'm interested in integrating <strong className="text-text-primary font-semibold">AI into real-world applications</strong> using LLM APIs, LangChain, and RAG-based systems. I enjoy building applications that combine backend engineering with AI to solve practical problems.
+        </p>
+        <p>
+          I'm constantly learning, experimenting with new technologies, and improving my understanding of backend architecture, system design, and scalable application development.
+        </p>
+      </motion.div>
 
-            {/* Card Content */}
-            <div className="relative rounded-2xl border border-border-dark bg-surface overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
-              <div className="aspect-[4/5] w-full bg-[#ffdfbf]">
-                <img
-                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=Atul&backgroundColor=ffdfbf"
-                  alt="Atul Pandey"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6 bg-gradient-to-t from-surface via-surface/90 to-transparent absolute bottom-0 w-full">
-                <h3 className="text-xl font-bold text-white mb-1">Atul Pandey</h3>
-                <p className="text-sm text-brand-primary font-medium">Full Stack Developer</p>
+      {/* Responsive Focus Cards (Mobile 1 col, Tablet 2 col, Desktop 4 col) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-10 sm:mt-12"
+      >
+        {HIGHLIGHTS.map((item, idx) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={idx}
+              className="p-4 sm:p-5 rounded-2xl bg-surface border border-border-dark hover:border-brand-primary/40 hover:shadow-[0_0_20px_rgba(147,80,255,0.08)] transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary mb-3.5 group-hover:scale-105 transition-transform">
+                  <Icon size={20} />
+                </div>
+                <h3 className="text-sm sm:text-base font-semibold text-text-primary mb-1.5 group-hover:text-brand-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-violet-500/20 to-pink-500/20 rounded-full blur-2xl"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-tr from-blue-500/20 to-emerald-500/20 rounded-full blur-2xl"></div>
-          </div>
-        </motion.div>
-
-        {/* Right Content */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="flex-1 space-y-6 text-text-secondary leading-relaxed"
-        >
-          <p>
-            Hello! I'm Atul Pandey a passionate full-stack web developer with a knack for creating intuitive and dynamic user experiences.
-            My journey in web development started with a curiosity about how things work on the internet, which quickly turned into a dedicated pursuit of mastering modern web technologies.
-          </p>
-          <p>
-            I specialize in building scalable applications using the MERN stack (<span className="text-brand-primary font-bold">MongoDB</span>, <span className="text-brand-primary font-bold">Express</span>, <span className="text-brand-primary font-bold">React</span>, and <span className="text-brand-primary font-bold">Node.js</span>).
-            Whether it's crafting beautiful front-end interfaces or architecting robust back-end APIs, I enjoy the entire process of bringing an idea to life.
-          </p>
-          <p>
-            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community.
-            I'm always eager to learn and take on new challenges that push my boundaries.
-          </p>
-        </motion.div>
-      </div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }
